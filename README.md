@@ -43,9 +43,44 @@ hermes -p leader -s leader-ext-skill
 | context-manager | 上下文管理 | P0 |
 | multi-agent-optimize | 多 Agent 协作 | P0 |
 | create-buddy-agent | Agent 创建 | P0 |
-| hawk-memory-dev | hawk 开发 | P1 |
-| hawk-eval | hawk 评测 | P1 |
 | project-architect | 项目架构 | P1 |
+
+## 同步到 Hermes
+
+### 安装 Skill 文件到 Hermes Profile
+
+```bash
+# 进入仓库目录
+cd /home/gql/repos/leader-ext-skill
+
+# 执行同步脚本
+bash sync-to-hermes.sh leader
+```
+
+同步后目录结构：
+```
+~/.hermes/profiles/leader/skills/
+├── leader-ext-skill/                    # 路由器
+│   ├── SKILL.md
+│   └── references/
+├── context-manager/                  # 独立 skill（软链接）
+│   └── SKILL.md → leader-ext-skill/references/context-manager.md
+├── multi-agent-optimize/             # 独立 skill（软链接）
+│   └── SKILL.md → leader-ext-skill/references/multi-agent-optimize.md
+└── ...                               # 其他 skills
+```
+
+### 验证安装
+
+```bash
+# 查看已安装的 skills
+ls -la ~/.hermes/profiles/leader/skills/
+
+# 验证软链接
+readlink -f ~/.hermes/profiles/leader/skills/context-manager/SKILL.md
+```
+
+---
 
 ## 工作流
 
