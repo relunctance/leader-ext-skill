@@ -31,8 +31,6 @@ hermes:
 | 管理上下文 | context-manager | 上下文共享 |
 | 多 Agent 协作 | multi-agent-optimize | 协作优化 |
 | 创建 Agent | create-buddy-agent | 创建新 Agent |
-| hawk 评测 | hawk-eval | 模型评测 |
-| hawk 开发 | hawk-memory-dev | hawk 项目 |
 | 项目架构 | project-architect | 项目架构 |
 | 任务分配 | multi-agent-optimize | 任务分配 |
 | 进度跟踪 | context-manager | 状态同步 |
@@ -49,8 +47,7 @@ hermes:
 | "管理上下文" | context-manager | `hermes -p leader -s context-manager` |
 | "多 Agent 协作" | multi-agent-optimize | `hermes -p leader -s multi-agent-optimize` |
 | "创建新 Agent" | create-buddy-agent | `hermes -p leader -s create-buddy-agent` |
-| "hawk 评测" | hawk-eval | `hermes -p leader -s hawk-eval` |
-| "hawk 项目开发" | hawk-memory-dev | `hermes -p leader -s hawk-memory-dev` |
+
 | "项目架构" | project-architect | `hermes -p leader -s project-architect` |
 
 ### 一句话触发规则（增强版）
@@ -74,10 +71,7 @@ hermes:
 "新建角色"、"new role" → create-buddy-agent
 "注册 Agent" → create-buddy-agent
 
-# hawk 项目
-"hawk"、"memory" → hawk-memory-dev
-"hawk eval"、"评测" → hawk-eval
-"hawk 调试"、"debug" → hawk-memory-dev
+
 
 # 项目架构
 "项目架构"、"architecture" → project-architect
@@ -119,10 +113,7 @@ hermes:
     │       ├─ Agent 设计
     │       └─ 注册配置
     │
-    ├─ 🎯 hawk 项目？
-    │   ├─ 评测 → hawk-eval
-    │   └─ 开发 → hawk-memory-dev
-    │
+
     ├─ 🎯 项目架构？
     │   └─ project-architect
     │
@@ -139,8 +130,7 @@ hermes:
 | context-manager | 上下文管理：上下文共享、状态同步 | P0 | 上下文、状态同步、记忆 |
 | multi-agent-optimize | 多 Agent 优化：任务分配、协作编排 | P0 | 多 Agent、协作、任务分配 |
 | create-buddy-agent | Agent 创建：Agent 设计、注册配置 | P0 | 创建 Agent、新建角色 |
-| hawk-memory-dev | hawk 开发：hawk 项目、TDD | P1 | hawk、memory |
-| hawk-eval | hawk 评测：模型评测、benchmark | P1 | hawk eval、评测 |
+
 | project-architect | 项目架构：架构设计、技术选型 | P1 | 项目架构、技术选型 |
 
 ---
@@ -204,22 +194,6 @@ hermes:
                 → 功能验证
 ```
 
-### 场景 4: hawk 项目开发 🛠️
-
-```
-需求：hawk 项目开发/评测
-    │
-    ├─ 开发
-    │   └─ hawk-memory-dev
-    │         → TDD 开发
-    │         → 项目结构
-    │
-    └─ 评测
-        └─ hawk-eval
-              → 评测执行
-              → 结果分析
-```
-
 ### 快速决策速查
 
 ```
@@ -229,8 +203,6 @@ hermes:
 │  多 Agent 协作     │  multi-agent-optimize                  │
 │  上下文管理        │  context-manager                       │
 │  创建新 Agent      │  create-buddy-agent                    │
-│  hawk 开发         │  hawk-memory-dev                       │
-│  hawk 评测         │  hawk-eval                            │
 │  项目架构          │  project-architect                     │
 │  任务分配          │  multi-agent-optimize                  │
 │  进度跟踪          │  context-manager                       │
@@ -335,9 +307,7 @@ hermes:
 | context-manager.md | 上下文管理 | 共享、状态同步 |
 | multi-agent-optimize.md | 多 Agent 优化 | 协作、任务分配 |
 | create-buddy-agent.md | Agent 创建 | 设计、注册 |
-| hawk-memory-dev.md | hawk 开发 | 项目、TDD |
-| hawk-eval.md | hawk 评测 | benchmark |
-| project-architect.md | 项目架构 | 技术选型 |
+
 
 ---
 

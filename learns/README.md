@@ -8,7 +8,7 @@
 - **位置**: `external_plugins/context-management/agents/context-manager.md`
 - **来源**: 官方插件
 
-### multi-agent-optimize / create-buddy-agent / hawk-* / project-architect
+### multi-agent-optimize / create-buddy-agent / project-architect
 - **位置**: gql-leader 主 skill 内置
 - **说明**: 这些是 leader 角色的核心能力，作为 skill 路由目标
 
@@ -17,4 +17,4 @@
 | 目录 | Skills |
 |------|--------|
 | `external_plugins/context-management/` | context-manager |
-| `gql-leader 主 skill` | multi-agent-optimize, create-buddy-agent, hawk-eval, hawk-memory-dev, project-architect |
+| `gql-leader 主 skill` | multi-agent-optimize, create-buddy-agent, project-architect |
