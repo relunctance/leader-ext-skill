@@ -324,13 +324,73 @@ hermes:
 
 ## 🔗 相关角色联动
 
-| 角色 | 协作场景 |
+|| 角色 | 协作场景 |
 |------|---------|
 | **arc** | 项目启动：leader-ext-skill 规划 → arc-ext-skill 评审架构 |
 | **coder** | 任务分配：leader-ext-skill 分配 → coder-ext-skill 执行开发 |
 | **review** | 代码评审：leader-ext-skill 协调 → review-ext-skill 评审 |
 | **sm** | Sprint 管理：leader-ext-skill 监督 → sm-ext-skill 执行规划 |
 | **qa** | 测试协调：leader-ext-skill 协调 → qa-ext-skill 执行测试 |
+
+---
+
+## 📋 Kanban 调度指南
+
+### 核心原则
+
+**leader 调度其他角色的正确方式**：通过 `hermes kanban create` 创建任务 + `--skill gql-{role}` 指定 skill。
+
+### 调度命令模板
+
+```bash
+# 1. 创建任务并指定角色 skill
+hermes kanban create "【{角色}】{任务名称}" \
+  --body "{任务描述}" \
+  --assignee {角色} \
+  --skill gql-{角色} \
+  --workspace dir:{{PROJECT_DIR}} \
+  --tenant {{PROJECT_NAME}} \
+  --priority 1 \
+  --max-retries 2
+
+# 2. 立即订阅飞书群
+hermes kanban notify-subscribe <task-id> --platform feishu --chat-id {{FEISHU_MAIN}}
+
+# 3. 如有依赖，建立 link
+hermes kanban link <parent-task-id> <child-task-id>
+```
+
+### 角色 Skill 对照表
+
+|| 角色 | Skill 名称 | 说明 |
+|------|---------|------|
+| arc | `gql-arc` | 架构设计 |
+| sm | `gql-sm` | Sprint 规划 |
+| coder | `gql-coder` | 开发实施 |
+| review | `gql-review` | 代码评审 |
+| qa | `gql-qa` | 测试验证 |
+
+### 完整调度流程
+
+```
+用户指令
+    ↓
+leader 规划任务
+    ↓ 创建 Kanban 任务
+arc/sm/coder/review/qa 执行
+    ↓ 评论 + 飞书通知
+leader 监控进度
+    ↓ 审批/协调
+下一个 Gate
+```
+
+### 常见问题
+
+| 问题 | 解决 |
+|------|------|
+| worker 加载不了 skill？ | 检查 qa/coder 等 profile 的 skills/ 目录是否包含 gql-{role} |
+| 任务创建后没反应？ | 检查是否执行了 `notify-subscribe` |
+| 角色不执行任务？ | 检查 `--assignee` 是否与 skill 名称对应 |
 
 ---
 
