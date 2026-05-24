@@ -56,7 +56,7 @@ hermes -p leader -s leader-ext-skill
 cd /home/gql/repos/leader-ext-skill
 
 # 执行同步脚本
-bash sync-to-hermes.sh leader
+python sync_to_hermes.py leader
 ```
 
 同步后目录结构：
